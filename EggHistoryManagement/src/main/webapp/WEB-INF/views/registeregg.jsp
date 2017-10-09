@@ -42,32 +42,54 @@ body.modal-open #wrap{
 </head>
 
 <body>
+<%@ include file="./include/navbar.jsp" %>
+
 
 <div id="wrap">
 	<div class="container-fluid">
 		<section class="container">
 			<div class="container-page">
 				<div class="col-md-6">
-					<h3 class="dark-grey">게란 등록</h3>
+					<h3 class="dark-grey">계란 등록</h3>
 
 					<div class="form-group col-lg-12">
 						<label>식별번호</label>
-						<input type="text" name="" class="form-control" id="producingId" value="" >
+						<input type="text" name="eid" class="form-control" id="eid" value="" placeholder="생성 후 자동으로 부여" disabled>
 					</div>
 
 					<div class="form-group col-lg-6">
 						<label>품종</label>
-						<input type="text" name="" class="form-control" id="kindofEgg" value="">
+						<input type="text" name="ekind" class="form-control" id="ekind" value="">
+					</div>
+					
+					<div class="form-group col-lg-6">
+						<label>계란등급</label>
+						<input type="text" name="erank" class="form-control" id="erank" value="">
+					</div>
+					<div class="form-group col-lg-6">
+						<label>계란규격</label>
+						<input type="text" name="eweight" class="form-control" id="eweight" value="">
+					</div>
+
+		            <div class="form-group col-lg-12 registration-date">
+		                <label>생산날짜</label>
+		            	<div class="input-group registration-date-time">
+		            		<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+		            		<input class="form-control" name="ebirth" id="ebirth" type="date">
+		            	</div>
+		            </div>
+					<div class="form-group col-lg-12">
+						<label>유통기한</label>
+						<input type="text" name="eexpire" class="form-control" id="eexpire" value="">
 					</div>
 
 					<div class="form-group col-lg-6">
-						<label>생산날짜</label>
-						<input type="text" name="" class="form-control" id="producingDate" value="">
+						<label>생산지 사업자번호</label>
+						<input type="text" name="pid" class="form-control" id="farmId" value="${login.producerVO.pid}" disabled>
 					</div>
-
 					<div class="form-group col-lg-6">
-						<label>농장번호</label>
-						<input type="text" name="" class="form-control" id="farmId" value="">
+						<label>생산지 위치</label>
+						<input type="text" name="pid" class="form-control" id="farmId" value="${login.producerVO.plocation}" disabled>
 					</div>
 
 				</div>
@@ -143,16 +165,24 @@ body.modal-open #wrap{
             });
         
         $("#makeQrBtn").on("click", function() {
-			var producingId= $("#producingId").val();
-			var kindofEgg = $("#kindofEgg").val();
-			var producingDate = $("#producingDate").val();
-			var farmId = $("#farmId").val();
+			var eid= $("#eid").val();
+			var pid = $("#pid").val();
+			var ekind = $("#ekind").val();
+			var erank = $("#erank").val();
+			var eweight = $("#eweight").val();
+			var ebirth = $("#ebirth").val();
+			var eexpire = $("#eexpire").val();
+			var elocation = $("#elocation").val();
 			
 			var content= JSON.stringify({
-				producingId : producingId,
-				kindofEgg : kindofEgg,
-				producingDate : producingDate,
-				farmId : farmId
+				eid : eid,
+				pid : pid,
+				ekind : ekind,
+				erank : erank,
+				eweight : eweight,
+				eexpire : eexpire,
+				ebirth : ebirth,
+				elocation : elocation
 			});
 			$("#qrtext").val(content);
 			
@@ -160,6 +190,10 @@ body.modal-open #wrap{
 			
 			$("#alertModal").modal("hide");
 		});
+    </script>
+    
+    <script>
+    
     </script>
 </body>
 

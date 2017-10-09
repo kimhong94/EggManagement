@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.egghistory.mapper.UserMapper">
+
+	<select id="loginProducer" resultType="producerVO">
+
+		select *
+		from producer
+		where
+		pid = #{userId} and ppw = #{userPw}
+
+	</select>
+
+	<update id="keepLogin">
+		update user set user_sessionKey = #{sessionId},
+		user_sessionLimit =
+		#{next} where user_id = #{userId}
+	</update>
+
+	<select id="checkUserWithSessionKey" resultType="UserVO">
+		select * from
+		user where user_sessionKey = #{value} and
+		user_sessionlimit > now()
+	</select>
+
+	<insert id="create">
+		insert into user (user_id, user_pw, user_nick,
+		user_name, user_email, user_auth, user_phone, user_sex, user_has_auth,
+		user_college)
+		values (#{userId},#{userPw},#{userNick},
+		#{userName},#{userEmail},#{userAuth},#{userPhone},#{userSex},0,#{userCollege})
+	</insert>
+
+	<select id="checkId" resultType="int">
+
+		SELECT COUNT(*) AS CNT
+		FROM user
+		WHERE 1 = 1
+		AND user_id = #{userId}
+
+	</select>
+
+
+	<select id="checkNick" resultType="int">
+
+		SELECT COUNT(*) AS CNT
+		FROM
+		user
+		WHERE 1 = 1
+		AND user_nick = #{userNick}
+
+	</select>
+
+
+	<delete id="delete">
+		delete from user where user_id = #{userId}
+	</delete>
+
+	<update id="update">
+		update user set user_name = #{userName},
+		user_email=#{userEmail}, user_phone =#{userPhone}, user_pw
+		=#{userPw}
+		where user_id = #{userId}
+	</update>
+
+	<select id="find_id" resultType="UserVO">
+
+		SELECT user_id, user_regdate
+		FROM user
+		WHERE
+		user_nick = #{userNick} and user_email = #{userEmail}
+
+	</select>
+
+	<select id="find_pw" resultType="UserVO">
+
+		SELECT user_id
+		FROM user
+		WHERE
+		user_id = #{userId} and user_email = #{userEmail}
+
+	</select>
+
+
+	<update id="update_ran_pw">
+		update user set user_pw =#{userPw}
+		where user_id =
+		#{userId}
+	</update>
+
+
+
+	<update id="updateUserAuth">
+		update user set user_has_auth = 1
+		where user_id =
+		#{userId}
+	</update>
+
+
+</mapper>
+
+
