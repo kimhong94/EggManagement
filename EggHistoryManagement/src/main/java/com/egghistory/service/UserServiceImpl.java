@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.egghistory.domain.DeliverVO;
 import com.egghistory.domain.ProducerVO;
 import com.egghistory.domain.UserVO;
 import com.egghistory.dto.LoginDTO;
@@ -27,6 +28,17 @@ public class UserServiceImpl implements UserService {
 			uvo.setProducerVO(pvo);
 			uvo.setUserId(pvo.getPid());
 			uvo.setUserPw(pvo.getPpw());
+		}
+		
+		DeliverVO dvo = udao.loginDeliver(dto);
+		if(dvo != null){
+			// 생산자 이면서 유통자인 경우....
+			if(uvo == null)
+				uvo = new UserVO();
+			
+			uvo.setDeliverVO(dvo);;
+			uvo.setUserId(dvo.getDid());
+			uvo.setUserPw(dvo.getDpw());
 		}
 		
 		return uvo;

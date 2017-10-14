@@ -46,7 +46,7 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
 		destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
-		<constructor-arg index="1" value="BATCH" />
+		<!--<constructor-arg index="1" value="BATCH" />   selectKey return값을 받아오기위해-->
 	</bean>
 
 	<context:component-scan base-package="com.egghistory.persistence"></context:component-scan>

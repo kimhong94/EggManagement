@@ -13,6 +13,17 @@ public class UserVO {
     // producer, 유통자, 소비자의 정보를 갖는다.
     private ProducerVO producerVO;
 
+    private DeliverVO deliverVO;
+
+	public DeliverVO getDeliverVO() {
+		return deliverVO;
+	}
+
+
+	public void setDeliverVO(DeliverVO deliverVO) {
+		this.deliverVO = deliverVO;
+	}
+
 
 	public String getUserId() {
 		return userId;

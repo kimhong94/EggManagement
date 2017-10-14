@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.egghistory.mapper.eggMapper">
+
+	<insert id="registerEgg">
+		INSERT INTO EGG (pid, ekind, erank, eweight, plocation, eexpire, ebirth) VALUES
+		 (#{pid}, #{ekind}, #{erank}, #{eweight}, #{plocation}, date_add(now(),interval+15 day), now())
+	</insert>
+	<select id="listEggsByPid" resultType="EggVO">
+		SELECT * FROM egg WHERE pid = #{pid} 
+	</select>
+	
+	<select id="getEggInfo" resultType="EggVO">
+		SELECT * FROM egg WHERE eid = #{eid} 
+	</select>
+	
+	<select id="listEggsGroupByForSell" resultType="EggVO">
+		select *, count(*) as ecount from egg 
+		where pid=#{pid} and sid is null 
+		group by ebirth ;  
+	</select>
+	
+	<update id="updateEggsForSell">
+		update egg set sid = #{sid}
+		where eid in(
+			select * from(
+				select eid from egg where pid=#{pid} and ebirth=#{ebirth}  
+				and sid is null order by eid limit #{ecount}) as p);
+	</update>
+	
+</mapper>
+
+

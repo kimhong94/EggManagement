@@ -32,10 +32,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			session.setAttribute(LOGIN, userVO);
 			
 			UserVO uvo = (UserVO)userVO;
+			
+			
+			// 유통자면 유통자 페이지, 관리자면 관리자 페이지
 			if(uvo.getProducerVO() != null)
 				dest = "/producer";
-			// 유통자면 유통자 페이지, 관리자면 관리자 페이지
 			
+			if(uvo.getDeliverVO() != null)
+				dest = "/deliver";
 
 			// 로그인 성공 후 보내는 페이지
 			response.sendRedirect(dest);

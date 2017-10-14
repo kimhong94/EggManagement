@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 
@@ -27,6 +26,7 @@
 
 
 <style>
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 body.modal-open #wrap{
     -webkit-filter: blur(7px);
     -moz-filter: blur(15px);
@@ -45,6 +45,46 @@ body.modal-open #wrap{
 #qrmodal{
 	background-color: white;
 }
+
+<!-- -->
+
+.spinner input {
+  text-align: right;
+}
+
+.input-group-btn-vertical {
+  position: relative;
+  white-space: nowrap;
+  width: 2%;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.input-group-btn-vertical > .btn {
+  display: block;
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px;
+  margin-left: -1px;
+  position: relative;
+  border-radius: 0;
+}
+
+.input-group-btn-vertical > .btn:first-child {
+  border-top-right-radius: 4px;
+}
+
+.input-group-btn-vertical > .btn:last-child {
+  margin-top: -2px;
+  border-bottom-right-radius: 4px;
+}
+
+.input-group-btn-vertical i {
+  position: absolute;
+  top: 0;
+  left: 4px;
+}
 </style>
 </head>
 
@@ -57,38 +97,34 @@ body.modal-open #wrap{
 		<section class="container">
 			<div class="container-page">
 				<div class="col-md-6">
-					<h3 class="dark-grey">계란 등록</h3>
+					<h3 class="dark-grey">계란 판매</h3>
 
 					<div class="form-group col-lg-12">
-						<label>식별번호</label>
-						<input type="text" name="eid" class="form-control" id="eid" value="" placeholder="생성 후 자동으로 부여" disabled>
+						<label>판매번호</label>
+						<input type="text" name="sid" class="form-control" id="sid" value="" placeholder="생성 후 자동으로 부여" disabled>
 					</div>
 
 					<div class="form-group col-lg-6">
-						<label>품종</label>
-						<input type="text" name="ekind" class="form-control" id="ekind" value="">
+						<label>주문자</label>
+						<input type="text" name="sorderer" class="form-control" id="sorderer" value="">
 					</div>
 					
 					<div class="form-group col-lg-6">
-						<label>계란등급</label>
-						<input type="text" name="erank" class="form-control" id="erank" value="">
+						<label>주문자주소</label>
+						<input type="text" name="saddr" class="form-control" id="saddr" value="">
 					</div>
 					<div class="form-group col-lg-6">
-						<label>계란규격</label>
-						<input type="text" name="eweight" class="form-control" id="eweight" value="">
+						<label>판매자/판매자번호 (나)</label>
+						<input type="text" name="pid" class="form-control" id="pid" value="${login.producerVO.pid }" disabled>
 					</div>
 
 					<div class="form-group col-lg-12">
-						<label>판개수</label>
-						<input type="text" name="ecount" class="form-control" id="ecount" value="">
+						<label>배송업체</label>
+						<input type="text" name="" class="form-control" id="" value="배송업체가 작성합니다." disabled>
 					</div>
-					<div class="form-group col-lg-6">
-						<label>생산지 사업자번호</label>
-						<input type="text" name="pid" class="form-control" id="pid" value="${login.producerVO.pid}" disabled>
-					</div>
-					<div class="form-group col-lg-6">
-						<label>생산지 위치</label>
-						<input type="text" name="plocation" class="form-control" id="plocation" value="${login.producerVO.plocation}" disabled>
+					<div class="form-group col-lg-12">
+						<label>배송업체</label>
+						<input type="text" name="" class="form-control" id="" value="배송업체가 작성합니다." disabled>
 					</div>
 
 				</div>
@@ -100,7 +136,7 @@ body.modal-open #wrap{
 					<p>Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)</p>
 					<p>Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)</p>
 
-					<button type="button" class="btn btn-primary" id="alertBtn" data-toggle="modal" data-target="#alertModal">QR code 생성 및 등록</button>
+					<button type="button" class="btn btn-primary" id="alertBtn" data-toggle="modal" data-target="#alertModal">QR code 생성 및 판매</button>
 
 				</div>
 			</div>
@@ -112,19 +148,17 @@ body.modal-open #wrap{
 	<br />
 </div>
 
-<div class="container-fluid">
+<div class="container" style="margin-top:25px">
 <div class="well">
     <table class="table" id="eggtable">
       <thead>
         <tr>
-          <th>식별번호</th>
           <th>품종</th>
           <th>등급</th>
           <th>규격</th>
           <th>생산날짜</th>
-          <th>유통기한</th>
-          <th>판매번호(판매여부)</th>
-          <th style="width: 36px;"><button class="btn btn-primary" id="listEggBtn">리스트갱신</button></th>
+          <th>총수량</th>
+          <th style="width: 60px;"><button class="btn btn-primary" id="listEggBtn">리스트갱신</button></th>
         </tr>
       </thead>
       <tbody>
@@ -142,14 +176,14 @@ body.modal-open #wrap{
       <div class="col-sm-6 col-sm-offset-3 text-center">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
         <br><br>
-        <h1>계란 등록</h1>
-        <h3>계란의 정보를 중앙 데이터베이스에 등록합니다.</h3>
-        <h3>등록 계란에 대한 QR코드를 제공해 드립니다.</h3>
+        <h1>계란 판매</h1>
+        <h3>계란판매 정보를 중앙 데이터베이스에 등록합니다.</h3>
+        <h3>판매정보에 대한 QR코드를 제공해 드립니다.</h3>
         <h4>허위로 정보를 등록할시 처벌 받을 수 있습니다.</h4>
         <h4><kbd>esc</kbd> 혹은 아무곳이나 클릭하시면 이 창을 닫습니다.</h4>
         <hr>
         <div class="alert alert-danger"><h4>반드시 정보를 다시한번 확인해 주세요</h4></div>
-        					<button type="button" class="btn btn-primary" id="makeQrBtn">QR code 생성 및 등록</button>
+        					<button type="button" class="btn btn-primary" id="makeQrBtn">QR code 생성 및 판매</button>
       </div>
     </div>
   </div>
@@ -167,16 +201,20 @@ body.modal-open #wrap{
 <script id="listEggTemplate" type="text/x-handlebars-template">
 {{#each .}}
         <tr>
-          <td>{{eid}}</td>
           <td>{{ekind}}</td>
           <td>{{erank}}</td>
           <td>{{eweight}}</td>
-          <td>{{prettifyDate ebirth}}</td>
-          <td>{{prettifyDate eexpire}}</td>
-          <td>{{sid}}</td>
+          <td data-ebirth={{ebirth}}>{{prettifyDate ebirth}}</td>
+          <td>{{ecount}}</td>
           <td>
-              <a href="user.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></i></a>
-              <a class="qrbutton" href="#qrmodal" role="button" data-toggle="modal" data-eid={{eid}}><i class="glyphicon glyphicon-qrcode"></i></a>
+  <div class="input-group spinner">
+    <input type="text" class="form-control" value=0 min="0" max="{{ecount}}">
+    <div class="input-group-btn-vertical">
+      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+    </div>
+  </div>
+  <p class="help-block">Min 0 - Max {{ecount}}.</p>
           </td>
         </tr>
 {{/each }}          
@@ -187,7 +225,11 @@ body.modal-open #wrap{
 		var year = dateObj.getFullYear();
 		var month = dateObj.getMonth() + 1;
 		var date = dateObj.getDate();
-		return year + "/" + month + "/" + date;
+		var hour = dateObj.getHours();
+		var minute = dateObj.getMinutes();
+		var second = dateObj.getSeconds();
+		
+		return year + "/" + month + "/" + date + " " + hour + ":" + minute + ":" + second;
 	});
 	</script>
 
@@ -197,6 +239,27 @@ body.modal-open #wrap{
 		getList();
 	});
 	
+	// spinner input form
+    $('#eggtable').on('click', ".spinner .btn:first-of-type",function() {
+        var btn = $(this);
+        var input = btn.closest('.spinner').find('input');
+        if (input.attr('max') == undefined || parseInt(input.val()) < parseInt(input.attr('max'))) {    
+          input.val(parseInt(input.val(), 10) + 1);
+        } else {
+          btn.next("disabled", true);
+        }
+      });
+      $('#eggtable').on('click', ".spinner .btn:last-of-type", function() {
+        var btn = $(this);
+        var input = btn.closest('.spinner').find('input');
+        if (input.attr('min') == undefined || parseInt(input.val()) > parseInt(input.attr('min'))) {    
+          input.val(parseInt(input.val(), 10) - 1);
+        } else {
+          btn.prev("disabled", true);
+        }
+      });
+	
+	
 	var printData = function(postArr, target, templateObject) {
 		var template = Handlebars.compile(templateObject.html());
 		var html = template(postArr);
@@ -205,12 +268,11 @@ body.modal-open #wrap{
 
 	function getList() {
 			var pid = $("#pid").val();
-			var pageInfo = '/producer/'+ pid + '/eggs';
+			var pageInfo = '/producer/'+ pid + '/sellegg/eggs';
 			$.getJSON(pageInfo, function(data) {
 					printData(data, $("#eggtable tbody"), $('#listEggTemplate'));
 			});
 	}
-	
 	</script>
 
 	<script type="text/javascript">
@@ -237,31 +299,47 @@ body.modal-open #wrap{
             });
         
         $("#makeQrBtn").on("click", function() {
-			var eid= $("#eid").val();
+        	
+        	// 판매번호는 자동갱신
+			var sorderer= $("#sorderer").val();
+			var saddr = $("#saddr").val();
 			var pid = $("#pid").val();
-			var ekind = $("#ekind").val();
-			var erank = $("#erank").val();
-			var eweight = $("#eweight").val();
-			var ebirth = $("#ebirth").val();
-			var eexpire = $("#eexpire").val();
-			var plocation = $("#plocation").val();
-			var ecount = $("#ecount").val();
+			// 갯수 계산
+			
+			var rows = $("#eggtable tbody tr");
+			
+			// 총 갯수
+			var snumber = 0;
+			
+			var eggs = new Array();
+			$(rows).each(function(index) {
+				var ecount = $(this).find("input").val();
+				if( ecount == 0)
+					return true;
+				
+				//이거 덧셈이 안된다.
+				snumber = parseInt(snumber) + parseInt(ecount);
+				var egg = {};
+				egg.pid = pid;
+				egg.ecount = ecount;
+				egg.ekind = $(this).children().eq(0).text();
+				egg.erank = $(this).children().eq(1).text();
+				egg.eweight = $(this).children().eq(2).text();
+				egg.ebirth = $(this).children().eq(3).data("ebirth");
+				
+				eggs.push(egg);
+			});
 			
 			var content = JSON.stringify({
-				eid : eid,
-				pid : pid,
-				ekind : ekind,
-				erank : erank,
-				eweight : eweight,
-				ebirth : ebirth,
-				eexpire : eexpire,
-				plocation : plocation,
-				ecount : ecount
+				sorderer : sorderer,
+				saddr : saddr,
+				snumber : snumber,
+				eggs : eggs
 			});
 			
 			$.ajax({
 				type : 'post',
-				url : '/eggs',
+				url : "/producer/" + pid + "/sellegg",
 				headers : {
 					"Content-Type" : "application/json",
 					"X-HTTP-Method-Override" : "POST"
@@ -320,6 +398,3 @@ body.modal-open #wrap{
 서버로 부터 식별번호를 받아와 qr코드를 생성한다.
  -->
 </html>
-
-
-

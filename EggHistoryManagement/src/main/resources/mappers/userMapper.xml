@@ -6,12 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.egghistory.mapper.UserMapper">
 
 	<select id="loginProducer" resultType="producerVO">
-
 		select *
 		from producer
 		where
 		pid = #{userId} and ppw = #{userPw}
+	</select>
 
+	<select id="loginDeliver" resultType="DeliverVO">
+		select *
+		from deliver
+		where
+		did = #{userId} and dpw = #{userPw}
 	</select>
 
 	<update id="keepLogin">
