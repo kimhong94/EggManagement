@@ -5,7 +5,10 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>Document</title>
 
 <!-- jQuery 2.1.4 -->
@@ -91,12 +94,10 @@ body.modal-open #wrap{
 <body>
 <%@ include file="./include/navbar.jsp" %>
 
-
 <div id="wrap">
-	<div class="container-fluid">
 		<section class="container">
 			<div class="container-page">
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-12 col-sm-6">
 					<h3 class="dark-grey">계란 판매</h3>
 
 					<div class="form-group col-lg-12">
@@ -129,7 +130,7 @@ body.modal-open #wrap{
 
 				</div>
 
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-12 col-sm-6">
 					<h3 class="dark-grey">유 의  사 항</h3>
 					<p>By clicking on "Register" you agree to The Company's' Terms and Conditions</p>
 					<p>While rare, prices are subject to change based on exchange rate fluctuations - should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)</p>
@@ -141,7 +142,6 @@ body.modal-open #wrap{
 				</div>
 			</div>
 		</section>
-	</div>
 </div>
 <div class="container" style="margin-top:50px">
 	<input id="qrtext" type="text" value="http://localhost:8080/eggs/" style="width: 80%" />
@@ -151,13 +151,34 @@ body.modal-open #wrap{
 <div class="container" style="margin-top:25px">
 <div class="well">
     <table class="table" id="eggtable">
+    <caption><h3>달걀목록</h3></caption>
       <thead>
         <tr>
           <th>품종</th>
           <th>등급</th>
           <th>규격</th>
           <th>생산날짜</th>
-          <th>총수량</th>
+          <th>남은수량</th>
+          <th style="width: 60px;"><button class="btn btn-primary" id="listEggBtn">리스트갱신</button></th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+</div>
+</div>
+<div class="container" style="margin-top:25px">
+<div class="well">
+    <table class="table" id="selltable">
+    <caption><h3>판매목록</h3></caption>
+      <thead>
+        <tr>
+          <th>판매번호</th>
+          <th>주문자</th>
+          <th>주문자주소</th>
+          <th>주문날짜</th>
+          <th>갯수</th>
           <th style="width: 60px;"><button class="btn btn-primary" id="listEggBtn">리스트갱신</button></th>
         </tr>
       </thead>
@@ -219,6 +240,21 @@ body.modal-open #wrap{
         </tr>
 {{/each }}          
 </script>
+<script id="sellEggTemplate" type="text/x-handlebars-template">
+{{#each .}}
+        <tr>
+          <td>{{sid}}</td>
+          <td>{{sorderer}}</td>
+          <td>{{saddr}}</td>
+          <td data-ebirth={{stime}}>{{prettifyDate stime}}</td>
+          <td>{{snumber}}</td>
+          <td>
+              <a href="user.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></i></a>
+              <a class="qrbutton" href="#qrmodal" role="button" data-toggle="modal" data-sid={{sid}}><i class="glyphicon glyphicon-qrcode"></i></a>
+          </td>
+        </tr>
+{{/each }}          
+</script>
 	<script>
 	Handlebars.registerHelper("prettifyDate", function(timeValue) {
 		var dateObj = new Date(timeValue);
@@ -267,11 +303,19 @@ body.modal-open #wrap{
 	}
 
 	function getList() {
+		
+			// egg의 group정보 출력
 			var pid = $("#pid").val();
 			var pageInfo = '/producer/'+ pid + '/sellegg/eggs';
 			$.getJSON(pageInfo, function(data) {
 					printData(data, $("#eggtable tbody"), $('#listEggTemplate'));
 			});
+			
+			// sellInfo 출력
+			pageInfo = "/producer/" + pid + "/sellegg";
+			$.getJSON(pageInfo, function(data) {
+				printData(data, $("#selltable tbody"), $('#sellEggTemplate'));
+		});
 	}
 	</script>
 
@@ -331,6 +375,7 @@ body.modal-open #wrap{
 			});
 			
 			var content = JSON.stringify({
+				pid : pid,
 				sorderer : sorderer,
 				saddr : saddr,
 				snumber : snumber,
@@ -378,12 +423,13 @@ body.modal-open #wrap{
 			
 		});
     	
-    	$("#eggtable").on("click", ".qrbutton",function() {
+    	$("#selltable").on("click", ".qrbutton",function() {
 			
-    		var eid = $(this).data("eid");
-    		alert(eid);
-			var eggUrl = "http://168.131.151.207:8080/eggs/" + eid;
-			$("#qrtext").val(eggUrl);
+    		var sid = $(this).data("sid");
+    		alert(sid);
+    		// todo
+			var sellUrl = "http://168.131.151.207:8080/eggs/" + sid;
+			$("#qrtext").val(sellUrl);
 			makeCode();
 			
 		});

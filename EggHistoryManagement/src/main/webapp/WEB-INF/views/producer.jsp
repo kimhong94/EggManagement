@@ -122,7 +122,7 @@
 		</div>
 
 
-		<a id="under" href="www.naver.com">
+		<a id="under" href="/producer/myegg">
 			<div class="col-xs-12 col-sm-6 col-lg-4">
 				<div class="box">
 					<div class="icon">

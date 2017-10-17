@@ -30,6 +30,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select eid from egg where pid=#{pid} and ebirth=#{ebirth}  
 				and sid is null order by eid limit #{ecount}) as p);
 	</update>
+	<select id="listEggsGroupBy" resultType="EggVO">
+		select *, count(*) as ecount from egg 
+		where pid=#{pid} group by ebirth ;  
+	</select>
+	
+	<select id="listEggsByEbirth" resultType="EggVO">
+		SELECT * FROM egg WHERE ebirth = #{ebirth} 
+	</select>
+	
+	
 	
 </mapper>
 

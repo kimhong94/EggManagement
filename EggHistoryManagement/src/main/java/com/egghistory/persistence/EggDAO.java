@@ -1,5 +1,6 @@
 package com.egghistory.persistence;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,5 +23,9 @@ public interface EggDAO {
 	public List<EggVO> listEggsGroupByForSell(String pid) throws Exception;
 
 	public void updateEggsForSell(SellVO sellvo) throws Exception;
+
+	public List<EggVO> listEggsGroupBy(String pid) throws Exception;
+
+	public List<EggVO> listEggsByEbirth(Timestamp ebirth) throws Exception;
 	
 }

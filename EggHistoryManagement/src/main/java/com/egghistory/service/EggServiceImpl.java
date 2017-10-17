@@ -1,5 +1,6 @@
 package com.egghistory.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,6 +39,18 @@ public class EggServiceImpl implements EggService {
 	@Override
 	public List<EggVO> listEggsGroupByForSell(String pid) throws Exception {
 		return eggdao.listEggsGroupByForSell(pid);
+	}
+
+
+	@Override
+	public List<EggVO> listEggsGroupBy(String pid) throws Exception {
+		return eggdao.listEggsGroupBy(pid);
+	}
+
+
+	@Override
+	public List<EggVO> listEggsByEbirth(Timestamp ebirth) throws Exception {
+		return eggdao.listEggsByEbirth(ebirth);
 	}
 
 }

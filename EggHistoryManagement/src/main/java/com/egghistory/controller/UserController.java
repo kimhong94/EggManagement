@@ -72,6 +72,12 @@ public class UserController {
 		
 		return "registeregg";  //login.jsp
 	}
+	@RequestMapping(value = "/producer/myegg", method = RequestMethod.GET)
+	public String listEgg(Locale locale, Model model) {
+		
+		
+		return "myegg";  //login.jsp
+	}
 	
 	
 	@RequestMapping(value = "/deliver", method = RequestMethod.GET)

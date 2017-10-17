@@ -6,13 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.egghistory.mapper.sellMapper">
 
 	<insert id="createSellInfo">
-		INSERT INTO sell(sorderer, saddr, snumber, stime)
-		VALUES(#{sorderer}, #{saddr}, #{snumber}, now())
+		INSERT INTO sell(pid ,sorderer, saddr, snumber, stime)
+		VALUES(#{pid}, #{sorderer}, #{saddr}, #{snumber}, now())
 		<selectKey resultType="int" keyProperty="sid" order="AFTER">
 	        SELECT LAST_INSERT_ID()
 	    </selectKey>		
 	</insert>
-		
+
+	<select id="listSellInfoByPid" resultType="SellVO">
+		SELECT * FROM sell WHERE pid = #{pid}
+	</select>
 </mapper>
 
 

@@ -8,7 +8,10 @@ public class SellVO{
     // 판매번호 
     private Integer sid;
 
-    // 주문자 
+    // 판매자 
+    private String pid;
+    
+	// 주문자 
     private String sorderer;
 
     // 주문자주소 
@@ -41,6 +44,14 @@ public class SellVO{
     // for DTO
     private List<EggVO> eggs;
 
+    
+    public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
     
     public List<EggVO> getEggs() {
 		return eggs;

@@ -1,5 +1,6 @@
 package com.egghistory.controller;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 
 import java.util.Date;
@@ -79,6 +80,48 @@ public class EggController {
 		}
 		
 		return entity;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/producer/{pid}/myegg/eggs", method=RequestMethod.GET)
+	public ResponseEntity<List<EggVO>> listEggsGroupBy(@PathVariable("pid")String pid) throws Exception{
+		
+		ResponseEntity<List<EggVO>> entity = null;
+		
+		try {
+			entity = new ResponseEntity<List<EggVO>>(es.listEggsGroupBy(pid) , HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<EggVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/qrcode/eggs/{time}", method=RequestMethod.GET)
+	public ResponseEntity<List<EggVO>> makeEggsQrGroupBy(@PathVariable("time")long time) throws Exception{
+		// 
+		System.out.println(time);
+		Timestamp ebirth = new Timestamp(time);
+
+		ResponseEntity<List<EggVO>> entity = null;
+		
+		try {
+			entity = new ResponseEntity<List<EggVO>>(es.listEggsByEbirth(ebirth) , HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<EggVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	@RequestMapping(value = "/qrcode/{time}", method = RequestMethod.GET)
+	public String qrcodePage(@PathVariable("time")long time, Model model) throws Exception {
+		
+		model.addAttribute("time", time);
+		return "qrcode";
 	}
 
 }

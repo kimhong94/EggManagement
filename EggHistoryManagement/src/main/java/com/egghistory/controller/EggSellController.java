@@ -72,4 +72,22 @@ public class EggSellController {
 		
 		return entity;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/producer/{pid}/sellegg", method = RequestMethod.GET)
+	public ResponseEntity<List<SellVO>> listSellInfo(@PathVariable("pid")String pid) {
+		
+		ResponseEntity<List<SellVO>> entity = null;
+		
+		try {
+			
+			List<SellVO> sells = sellservice.listSellInfoByPid(pid);
+			entity = new ResponseEntity<List<SellVO>>(sells,HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<SellVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
 }

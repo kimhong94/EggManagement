@@ -1,5 +1,7 @@
 package com.egghistory.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +27,11 @@ public class SellServiceImpl implements SellService{
 		selldao.createSellInfo(sellvo);
 		eggdao.updateEggsForSell(sellvo);
 		
+	}
+
+	@Override
+	public List<SellVO> listSellInfoByPid(String pid) throws Exception {
+		return selldao.listSellInfoByPid(pid);
 	}
 	
 

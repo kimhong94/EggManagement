@@ -1,5 +1,6 @@
 package com.egghistory.persistence;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -52,6 +53,16 @@ public class EggDAOImpl implements EggDAO {
 			egg.setSid(sid);
 			session.update(namespace+".updateEggsForSell", egg);
 		}
+	}
+
+	@Override
+	public List<EggVO> listEggsGroupBy(String pid) throws Exception {
+		return session.selectList(namespace+".listEggsGroupBy", pid);
+	}
+
+	@Override
+	public List<EggVO> listEggsByEbirth(Timestamp ebirth) throws Exception {
+		return session.selectList(namespace+".listEggsByEbirth", ebirth);
 	}
 	
 	

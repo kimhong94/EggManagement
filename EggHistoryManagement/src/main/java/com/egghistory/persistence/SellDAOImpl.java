@@ -1,5 +1,7 @@
 package com.egghistory.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,6 +23,11 @@ public class SellDAOImpl implements SellDAO {
 		
 		session.insert(namespace+".createSellInfo", sellvo);
 		System.out.println(sellvo);
+	}
+
+	@Override
+	public List<SellVO> listSellInfoByPid(String pid) throws Exception {
+		return session.selectList(namespace+".listSellInfoByPid", pid);
 	}
 
 }
