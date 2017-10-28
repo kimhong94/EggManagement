@@ -79,19 +79,6 @@ public class UserController {
 		return "myegg";  //login.jsp
 	}
 	
-	
-	@RequestMapping(value = "/deliver", method = RequestMethod.GET)
-	public String deliverPage(Locale locale, Model model) {
-		
-		
-		return "deliver";  //login.jsp
-	}
-	
-	@RequestMapping(value = "/deliver/deliveegg", method = RequestMethod.GET)
-	public String deliverEgg(Locale locale, Model model) {
-		
-		
-		return "deliveegg";  //login.jsp
-	}
+
 
 }

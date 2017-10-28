@@ -75,7 +75,7 @@ public class EggSellController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/producer/{pid}/sellegg", method = RequestMethod.GET)
-	public ResponseEntity<List<SellVO>> listSellInfo(@PathVariable("pid")String pid) {
+	public ResponseEntity<List<SellVO>> listSellInfo(@PathVariable("pid")String pid, Model model) {
 		
 		ResponseEntity<List<SellVO>> entity = null;
 		
@@ -86,6 +86,24 @@ public class EggSellController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<SellVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/sellegg/{sid}", method = RequestMethod.GET)
+	public ResponseEntity<SellVO> getSellInfoBySID(@PathVariable("sid")String sid, Model model) {
+		
+		ResponseEntity<SellVO> entity = null;
+		
+		try {
+			
+			SellVO sellInfo = sellservice.getSellInfoBySID(sid);
+			entity = new ResponseEntity<SellVO>(sellInfo,HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<SellVO>(HttpStatus.BAD_REQUEST);
 		}
 		
 		return entity;

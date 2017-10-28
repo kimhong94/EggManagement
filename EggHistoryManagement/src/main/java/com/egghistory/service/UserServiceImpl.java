@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.egghistory.domain.DeliverEmployeeVO;
 import com.egghistory.domain.DeliverVO;
 import com.egghistory.domain.ProducerVO;
 import com.egghistory.domain.UserVO;
@@ -37,11 +38,10 @@ public class UserServiceImpl implements UserService {
 				uvo = new UserVO();
 			
 			uvo.setDeliverVO(dvo);;
-			uvo.setUserId(dvo.getDid());
+			uvo.setUserId(dvo.getDeliverid());
 			uvo.setUserPw(dvo.getDpw());
 		}
 		
 		return uvo;
 	}
-
 }

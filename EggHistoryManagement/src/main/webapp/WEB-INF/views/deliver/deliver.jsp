@@ -53,13 +53,15 @@
 	<div class="container" style="margin-top: 50px">
 		<div class="row">
 			<div class="panel panel-success">
-				<div class="panel-heading"><h1>사업자 정보 : 배송 </h1></div>
+				<div class="panel-heading">
+					<h1>사업자 정보 : 배송</h1>
+				</div>
 				<div class="panel-body">
 					<div align="right">
 						<a href='#'><span class='glyphicon glyphicon-tasks'></span> &nbsp Edit ! </a>
 					</div>
 					<label>배송업체 번호 (ID) :</label>
-					<input type='text' class='form-control' value='${login.deliverVO.did}' disabled>
+					<input type='text' class='form-control' value='${login.deliverVO.deliverid}' disabled>
 					<label>배송업체 이름 : </label>
 					<input type='text' class='form-control' value='${login.deliverVO.dcompany}' disabled>
 					<label>배송업체 위치 : </label>
@@ -78,18 +80,40 @@
 			<div class="row">
 				<!-- Boxes de Acoes -->
 
-			<a id="under" href="/deliver/deliveegg">
+				<a id="under" href="/deliver/deliveegg">
+					<div class="col-xs-12 col-sm-6 col-lg-4">
+						<div class="box">
+							<div class="icon">
+								<div class="image">
+									<i class="fa fa-plane"></i>
+								</div>
+								<div class="info">
+									<h3 class="title">배송</h3>
+									<p></p>
+									<div class="more">
+										배송 하기 <i class="fa fa-angle-double-right"></i>
+									</div>
+								</div>
+							</div>
+							<div class="space"></div>
+						</div>
+				</a>
+			</div>
+
+
+			<a id="under" href="#">
 				<div class="col-xs-12 col-sm-6 col-lg-4">
 					<div class="box">
 						<div class="icon">
 							<div class="image">
-								<i class="fa fa-plane"></i>
+								<i class="fa fa-search"></i>
 							</div>
+
 							<div class="info">
-								<h3 class="title">배송</h3>
+								<h3 class="title">내 배송</h3>
 								<p></p>
 								<div class="more">
-									배송 하기 <i class="fa fa-angle-double-right"></i>
+									내 배송 <i class="fa fa-angle-double-right"></i>
 								</div>
 							</div>
 						</div>
@@ -97,9 +121,7 @@
 					</div>
 			</a>
 		</div>
-
-
-		<a id="under" href="www.naver.com">
+		<a id="under" href="/deliver/registdeliver">
 			<div class="col-xs-12 col-sm-6 col-lg-4">
 				<div class="box">
 					<div class="icon">
@@ -108,10 +130,10 @@
 						</div>
 
 						<div class="info">
-							<h3 class="title">내 배송</h3>
+							<h3 class="title">사원등록</h3>
 							<p></p>
 							<div class="more">
-								내 배송 <i class="fa fa-angle-double-right"></i>
+								사원 등록 하기<i class="fa fa-angle-double-right"></i>
 							</div>
 						</div>
 					</div>

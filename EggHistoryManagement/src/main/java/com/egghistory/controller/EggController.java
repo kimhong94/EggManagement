@@ -44,6 +44,23 @@ public class EggController {
 		return "viewEgg";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/eggs/sellegg/{sid}", method=RequestMethod.GET)
+	public ResponseEntity<List<EggVO>> listEggsGroupBySID(@PathVariable("sid")String sid) throws Exception{
+		// 배송페이지에서 사용 sid별로 계란을 묶어서 표시한다.
+		ResponseEntity<List<EggVO>> entity = null;
+		
+		try {
+			List<EggVO> eggs = es.listEggsBySid(sid);
+			entity = new ResponseEntity<List<EggVO>>(eggs, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<List<EggVO>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/eggs", method=RequestMethod.POST)

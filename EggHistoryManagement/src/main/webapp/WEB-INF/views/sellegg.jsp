@@ -93,7 +93,8 @@ body.modal-open #wrap{
 
 <body>
 <%@ include file="./include/navbar.jsp" %>
-
+안녕하세요
+${abc}
 <div id="wrap">
 		<section class="container">
 			<div class="container-page">
@@ -428,7 +429,7 @@ body.modal-open #wrap{
     		var sid = $(this).data("sid");
     		alert(sid);
     		// todo
-			var sellUrl = "http://168.131.151.207:8080/eggs/" + sid;
+			var sellUrl = "/sellegg/" + sid;
 			$("#qrtext").val(sellUrl);
 			makeCode();
 			

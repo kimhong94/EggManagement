@@ -27,5 +27,7 @@ public interface EggDAO {
 	public List<EggVO> listEggsGroupBy(String pid) throws Exception;
 
 	public List<EggVO> listEggsByEbirth(Timestamp ebirth) throws Exception;
+
+	public List<EggVO> listEggsBySid(String sid) throws Exception;
 	
 }

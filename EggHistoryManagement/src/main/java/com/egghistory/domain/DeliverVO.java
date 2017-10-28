@@ -4,7 +4,7 @@ package com.egghistory.domain;
 public class DeliverVO {
 
 	// 배송업체ID 
-	private String did;
+	private String deliverid;
 
 	// 비밀번호 
 	private String dpw;
@@ -28,14 +28,6 @@ public class DeliverVO {
 
 	// 업체대표 
 	private String prepresentative;
-
-	public String getDid() {
-		return did;
-	}
-
-	public void setDid(String did) {
-		this.did = did;
-	}
 
 	public String getDpw() {
 		return dpw;
@@ -72,19 +64,20 @@ public class DeliverVO {
 	// Deliver 모델 복사
 	public void CopyData(DeliverVO param)
 	{
-		this.did = param.getDid();
+		this.deliverid = param.getDeliverid();
 		this.dpw = param.getDpw();
 		this.dcompany = param.getDcompany();
 		this.dlocation = param.getDlocation();
 		this.prepresentative = param.getPrepresentative();
 	}
 
-	@Override
-	public String toString() {
-		return "DeliverVO [did=" + did + ", dpw=" + dpw + ", dcompany=" + dcompany + ", dphone=" + dphone
-				+ ", dlocation=" + dlocation + ", prepresentative=" + prepresentative + "]";
+	public String getDeliverid() {
+		return deliverid;
 	}
-	
-	
+
+	public void setDeliverid(String deliverid) {
+		this.deliverid = deliverid;
+	}
+
 	
 }

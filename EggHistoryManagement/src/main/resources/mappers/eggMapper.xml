@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM egg WHERE pid = #{pid} 
 	</select>
 	
+	<select id="listEggsBySid" resultType="EggVO">
+		SELECT * FROM egg WHERE sid = #{sid} 
+	</select>
+	
 	<select id="getEggInfo" resultType="EggVO">
 		SELECT * FROM egg WHERE eid = #{eid} 
 	</select>
@@ -37,8 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="listEggsByEbirth" resultType="EggVO">
 		SELECT * FROM egg WHERE ebirth = #{ebirth} 
-	</select>
 	
+	</select>
 	
 	
 </mapper>

@@ -10,5 +10,7 @@ public interface SellDAO {
 
 	public List<SellVO> listSellInfoByPid(String pid) throws Exception;
 
+	public SellVO getSellInfoBySID(String sid) throws Exception;
+
 	
 }

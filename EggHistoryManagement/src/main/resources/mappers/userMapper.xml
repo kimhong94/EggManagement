@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from deliver
 		where
-		did = #{userId} and dpw = #{userPw}
+		deliverid = #{userId} and dpw = #{userPw}
 	</select>
 
 	<update id="keepLogin">

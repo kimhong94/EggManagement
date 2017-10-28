@@ -10,4 +10,6 @@ public interface SellService {
 
 	public List<SellVO> listSellInfoByPid(String pid) throws Exception;
 
+	public SellVO getSellInfoBySID(String sid) throws Exception;
+
 }

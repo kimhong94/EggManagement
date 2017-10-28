@@ -30,4 +30,9 @@ public class SellDAOImpl implements SellDAO {
 		return session.selectList(namespace+".listSellInfoByPid", pid);
 	}
 
+	@Override
+	public SellVO getSellInfoBySID(String sid) throws Exception {
+		return session.selectOne(namespace+".getSellInfoBySID", sid);
+	}
+
 }

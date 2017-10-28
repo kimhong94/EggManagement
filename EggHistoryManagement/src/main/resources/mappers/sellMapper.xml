@@ -16,6 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listSellInfoByPid" resultType="SellVO">
 		SELECT * FROM sell WHERE pid = #{pid}
 	</select>
+	
+	<select id="getSellInfoBySID" resultType="SellVO">
+		SELECT * FROM sell WHERE sid = #{sid}
+	</select>
 </mapper>
 
 

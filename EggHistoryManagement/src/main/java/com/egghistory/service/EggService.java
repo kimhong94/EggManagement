@@ -19,4 +19,6 @@ public interface EggService {
 
 	public List<EggVO> listEggsByEbirth(Timestamp ebirth) throws Exception;
 
+	public List<EggVO> listEggsBySid(String sid) throws Exception;
+
 }

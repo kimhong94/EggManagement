@@ -53,4 +53,10 @@ public class EggServiceImpl implements EggService {
 		return eggdao.listEggsByEbirth(ebirth);
 	}
 
+
+	@Override
+	public List<EggVO> listEggsBySid(String sid) throws Exception {
+		return eggdao.listEggsBySid(sid);
+	}
+
 }

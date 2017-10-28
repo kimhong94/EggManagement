@@ -64,6 +64,11 @@ public class EggDAOImpl implements EggDAO {
 	public List<EggVO> listEggsByEbirth(Timestamp ebirth) throws Exception {
 		return session.selectList(namespace+".listEggsByEbirth", ebirth);
 	}
+
+	@Override
+	public List<EggVO> listEggsBySid(String sid) throws Exception {
+		return session.selectList(namespace+".listEggsBySid", sid);
+	}
 	
 	
 

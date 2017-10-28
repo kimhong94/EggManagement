@@ -100,9 +100,10 @@ body.modal-open #wrap {
 		<input type="text" name="pid" class="form-control" id="pid" value="${login.producerVO.pid }" disabled>
 	</div>
 
-	<div class="container" style="margin-top: 25px">
+	<div class="container-fluid col-md-6" style="margin-top: 25px">
 		<div class="well">
 			<table class="table" id="eggtable">
+			<caption><h3>달걀목록</h3></caption>
 				<thead>
 					<tr>
 						<th>품종</th>
@@ -119,6 +120,46 @@ body.modal-open #wrap {
 			</table>
 		</div>
 	</div>
+<div class="container-fluid col-md-6" style="margin-top:25px">
+<div class="well">
+    <table class="table" id="selltable">
+    <caption><h3>판매목록</h3></caption>
+      <thead>
+        <tr>
+          <th>판매번호</th>
+          <th>주문자</th>
+          <th>주문자주소</th>
+          <th>주문날짜</th>
+          <th>갯수</th>
+          <th>배송업체</th>
+          <th>출발시간</th>
+          <th style="width: 60px;"><button class="btn btn-primary" id="listEggBtn">리스트갱신</button></th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+</div>
+</div>
+
+<script id="sellEggTemplate" type="text/x-handlebars-template">
+{{#each .}}
+        <tr>
+          <td>{{sid}}</td>
+          <td>{{sorderer}}</td>
+          <td>{{saddr}}</td>
+          <td data-ebirth={{stime}}>{{prettifyDate stime}}</td>
+          <td>{{snumber}}</td>
+          <td id="deliverid" data-did="{{deliverid}}">{{dcompany}}</td>
+          <td>{{starttime}}</td>
+          <td>
+              <a href="user.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></i></a>
+              <a class="qrbutton" href="#qrmodal" role="button" data-toggle="modal" data-sid={{sid}}><i class="glyphicon glyphicon-qrcode"></i></a>
+          </td>
+        </tr>
+{{/each }}          
+</script>
 
 	<script id="listEggTemplate" type="text/x-handlebars-template">
 {{#each .}}
@@ -187,6 +228,12 @@ body.modal-open #wrap {
 			var pageInfo = '/producer/'+ pid + '/myegg/eggs';
 			$.getJSON(pageInfo, function(data) {
 					printData(data, $("#eggtable tbody"), $('#listEggTemplate'));
+			});
+			
+			// sellInfo 출력
+			pageInfo = "/producer/" + pid + "/sellegg";
+			$.getJSON(pageInfo, function(data) {
+				printData(data, $("#selltable tbody"), $('#sellEggTemplate'));
 			});
 	}
 	</script>

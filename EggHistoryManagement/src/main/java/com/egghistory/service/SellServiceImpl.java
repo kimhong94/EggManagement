@@ -33,6 +33,11 @@ public class SellServiceImpl implements SellService{
 	public List<SellVO> listSellInfoByPid(String pid) throws Exception {
 		return selldao.listSellInfoByPid(pid);
 	}
+
+	@Override
+	public SellVO getSellInfoBySID(String sid) throws Exception {
+		return selldao.getSellInfoBySID(sid);
+	}
 	
 
 }
