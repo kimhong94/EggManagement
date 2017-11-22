@@ -68,8 +68,12 @@
 						<label>배송자</label>
 						<input type="text" name="" class="form-control" id="ddeliver" placeholder="배송업체가 작성합니다." value="">
 					</div>
+					<div class="form-group col-lg-12">
+						<input type="button" name="" class="btn btn-lg btn-success btn-block" id="delivebtn" value="등록하기">
+					</div>
+
 				</div>
-				<div class="col-md-6" style="margin-top:120px">
+				<div class="col-md-6" style="margin-top: 120px">
 					<video id="preview" autoplay="autoplay" class="active" style="transform: scaleX(-1);"></video>
 				</div>
 			</div>
@@ -187,6 +191,42 @@
         });
         
     </script>
+
+	<script type="text/javascript">
+	$("#delivebtn").on("click", function() {
+
+		var sid = $("#sid").val();
+		var did = $("#did").val();
+		var dcompany = $("#dcompany").val();
+		var ddeliver = $("#ddeliver").val();
+		
+		var content = JSON.stringify({
+			sid : sid,
+			did : did,
+			dcompany : dcompany,
+			ddeliver : ddeliver
+		});
+		
+		$.ajax({
+			type : 'post',
+			url : "/deliver/deliveegg/" + sid,
+			headers : {
+				"Content-Type" : "application/json",
+				"X-HTTP-Method-Override" : "POST"
+			},
+			data : content,
+			dataType : 'text',
+			success : function(result) {
+				if (result == 'SUCCESS') {
+					alert("등록 되었습니다.");
+					$("#alertModal").modal("hide");
+					getList();
+				}
+			}
+		});
+
+	});
+	</script>
 </body>
 
 </html>

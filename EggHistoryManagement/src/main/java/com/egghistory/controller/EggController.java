@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.egghistory.domain.EggVO;
+import com.egghistory.domain.SellVO;
 import com.egghistory.domain.UserVO;
 import com.egghistory.dto.LoginDTO;
 import com.egghistory.service.EggService;
+import com.egghistory.service.SellService;
 import com.egghistory.service.UserService;
 
 @Controller
@@ -34,13 +36,17 @@ public class EggController {
 	@Inject
 	private EggService es;
 	
+	@Inject
+	SellService ss;
 	
 	@RequestMapping(value = "/eggs/{eid}", method = RequestMethod.GET)
 	public String home(@PathVariable("eid")int eid, Model model) throws Exception {
 		
 		EggVO evo = es.getEggInfo(eid);
+		SellVO svo = ss.getSellInfoBySID(Integer.toString(evo.getSid()));
 		
 		model.addAttribute("egg", evo);
+		model.addAttribute("sell", svo);
 		return "viewEgg";
 	}
 	

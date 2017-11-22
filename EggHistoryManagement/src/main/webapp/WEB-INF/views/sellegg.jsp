@@ -98,7 +98,7 @@ ${abc}
 <div id="wrap">
 		<section class="container">
 			<div class="container-page">
-				<div class="col-md-6 col-xs-12 col-sm-6">
+				<div class="col-md-12 col-xs-12 col-sm-6">
 					<h3 class="dark-grey">계란 판매</h3>
 
 					<div class="form-group col-lg-12">
@@ -128,17 +128,9 @@ ${abc}
 						<label>배송업체</label>
 						<input type="text" name="" class="form-control" id="" value="배송업체가 작성합니다." disabled>
 					</div>
-
-				</div>
-
-				<div class="col-md-6 col-xs-12 col-sm-6">
-					<h3 class="dark-grey">유 의  사 항</h3>
-					<p>By clicking on "Register" you agree to The Company's' Terms and Conditions</p>
-					<p>While rare, prices are subject to change based on exchange rate fluctuations - should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)</p>
-					<p>Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)</p>
-					<p>Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)</p>
-
-					<button type="button" class="btn btn-primary" id="alertBtn" data-toggle="modal" data-target="#alertModal">QR code 생성 및 판매</button>
+					<div class="form-group col-lg-12">
+						<button type="button" class="btn btn-primary btn-block" id="alertBtn" data-toggle="modal" data-target="#alertModal">QR code 생성 및 판매</button>
+					</div>
 
 				</div>
 			</div>

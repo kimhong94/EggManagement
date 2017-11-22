@@ -152,7 +152,7 @@ body.modal-open #wrap {
           <td data-ebirth={{stime}}>{{prettifyDate stime}}</td>
           <td>{{snumber}}</td>
           <td id="deliverid" data-did="{{deliverid}}">{{dcompany}}</td>
-          <td>{{starttime}}</td>
+          <td>{{prettifyDate starttime}}</td>
           <td>
               <a href="user.html"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></i></a>
               <a class="qrbutton" href="#qrmodal" role="button" data-toggle="modal" data-sid={{sid}}><i class="glyphicon glyphicon-qrcode"></i></a>
@@ -178,6 +178,8 @@ body.modal-open #wrap {
 </script>
 	<script>
 	Handlebars.registerHelper("prettifyDate", function(timeValue) {
+		if(timeValue == null)
+			return "";
 		var dateObj = new Date(timeValue);
 		var year = dateObj.getFullYear();
 		var month = dateObj.getMonth() + 1;
@@ -324,7 +326,7 @@ body.modal-open #wrap {
 			
     		var eid = $(this).data("eid");
     		alert(eid);
-			var eggUrl = "http://168.131.151.207:8080/eggs/" + eid;
+			var eggUrl = "http://localhost:8080/eggs/" + eid;
 			$("#qrtext").val(eggUrl);
 			makeCode();
 			

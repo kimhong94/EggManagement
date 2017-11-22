@@ -56,7 +56,7 @@ body.modal-open #wrap{
 	<div class="container-fluid">
 		<section class="container">
 			<div class="container-page">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<h3 class="dark-grey">계란 등록</h3>
 
 					<div class="form-group col-lg-12">
@@ -90,19 +90,12 @@ body.modal-open #wrap{
 						<label>생산지 위치</label>
 						<input type="text" name="plocation" class="form-control" id="plocation" value="${login.producerVO.plocation}" disabled>
 					</div>
+					<div class="form-group col-lg-12">
+					<button type="button" class="btn btn-primary btn-block" id="alertBtn" data-toggle="modal" data-target="#alertModal">QR code 생성 및 등록</button>
+					</div>
 
 				</div>
 
-				<div class="col-md-6">
-					<h3 class="dark-grey">유 의  사 항</h3>
-					<p>By clicking on "Register" you agree to The Company's' Terms and Conditions</p>
-					<p>While rare, prices are subject to change based on exchange rate fluctuations - should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)</p>
-					<p>Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)</p>
-					<p>Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)</p>
-
-					<button type="button" class="btn btn-primary" id="alertBtn" data-toggle="modal" data-target="#alertModal">QR code 생성 및 등록</button>
-
-				</div>
 			</div>
 		</section>
 	</div>
@@ -304,7 +297,7 @@ body.modal-open #wrap{
 			
     		var eid = $(this).data("eid");
     		alert(eid);
-			var eggUrl = "http://168.131.151.207:8080/eggs/" + eid;
+			var eggUrl = "http://localhost:8080/eggs/" + eid;
 			$("#qrtext").val(eggUrl);
 			makeCode();
 			

@@ -16,9 +16,36 @@
 
 </head>
 <body>
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<img src="/resources/image/eqregg.jpg" alt="...">
+				<div class="carousel-caption">...</div>
+			</div>
+			<div class="item">
+				<img src="..." alt="...">
+				<div class="carousel-caption">...</div>
+			</div>
+			...
+		</div>
+
+		<!-- Controls -->
+		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span>
+		</a> <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>
+		</a>
+	</div>
+
 
 	<div class="container">
-	<p>${msg}</p>
+		<p>${msg}</p>
 		<div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -45,8 +72,7 @@
 							<!-- Button -->
 
 							<div class="col-sm-12 controls">
-								<a id="btn-login" href="#" onClick="formSubmit(); return false" class="btn btn-success">Login </a>
-								<a id="btn-register" href="#" class="btn btn-primary">Register </a>
+								<a id="btn-login" href="#" onClick="formSubmit(); return false" class="btn btn-success">Login </a> <a id="btn-register" href="#" class="btn btn-primary">Register </a>
 							</div>
 						</div>
 
@@ -55,7 +81,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
 	
 		function formSubmit(){

@@ -12,4 +12,6 @@ public interface SellService {
 
 	public SellVO getSellInfoBySID(String sid) throws Exception;
 
+	public void updateSellInfoForDeliver(SellVO svo) throws Exception;
+
 }

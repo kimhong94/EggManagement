@@ -38,6 +38,11 @@ public class SellServiceImpl implements SellService{
 	public SellVO getSellInfoBySID(String sid) throws Exception {
 		return selldao.getSellInfoBySID(sid);
 	}
+
+	@Override
+	public void updateSellInfoForDeliver(SellVO svo) throws Exception {
+		selldao.updateSellInfoForDeliver(svo);
+	}
 	
 
 }

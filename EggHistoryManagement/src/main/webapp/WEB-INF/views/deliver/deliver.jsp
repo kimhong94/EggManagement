@@ -27,7 +27,7 @@
 
 <script type="text/javascript" src="/resources/jqueryqr/jquery.qrcode.min.js"></script>
 
-<link href="/resources/Shop.css" rel="stylesheet" type="text/css">
+<link href="/resources/Shops.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">

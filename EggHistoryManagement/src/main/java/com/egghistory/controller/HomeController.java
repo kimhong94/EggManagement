@@ -23,18 +23,32 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String mainpage(Locale locale, Model model) {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "producingPage";
+		return "/custom/MainMainMain";
 	}
+	@RequestMapping(value = "/EggInfo", method = RequestMethod.GET)
+	public String custom_mainpage(Locale locale, Model model) {
+		
+		return "/custom/EggInfo";
+	}
+	@RequestMapping(value = "/CustomHelp", method = RequestMethod.GET)
+	public String custom_help(Locale locale, Model model) {
+		
+		return "/custom/CustomHelp";
+	}
+	
+	@RequestMapping(value = "/CustomMain", method = RequestMethod.GET)
+	public String custom_info(Locale locale, Model model) {
+		
+		return "/custom/CustomMain";
+	}
+	@RequestMapping(value = "/MainBoard", method = RequestMethod.GET)
+	public String custom_mainboard(Locale locale, Model model) {
+		
+		return "/custom/MainBoard";
+	}
+
 	@RequestMapping(value = "/process", method = RequestMethod.GET)
 	public String processingPage(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);

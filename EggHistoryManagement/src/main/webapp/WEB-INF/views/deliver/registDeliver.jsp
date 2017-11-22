@@ -27,10 +27,10 @@
 
 <script type="text/javascript" src="/resources/jqueryqr/jquery.qrcode.min.js"></script>
 
-<link href="/resources/Shop.css" rel="stylesheet" type="text/css">
+<link href="/resources/Shops.css" rel="stylesheet" type="text/css">
 
 <style type="text/css">
-#qrmodal{
+#qrmodal {
 	background-color: white;
 }
 </style>
@@ -218,5 +218,6 @@
 
 		});
 	</script>
+
 </body>
 </html>

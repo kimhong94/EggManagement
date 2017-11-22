@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.egghistory.domain.DeliverEmployeeVO;
 import com.egghistory.domain.DeliverVO;
+import com.egghistory.domain.SellVO;
 import com.egghistory.service.DeliverService;
+import com.egghistory.service.SellService;
 import com.egghistory.service.UserService;
 
 @Controller
@@ -27,6 +29,9 @@ public class DeliverController {
 	
 	@Inject
 	DeliverService ds;
+	
+	@Inject
+	SellService ss;
 	
 	// 배송 메인 페이지
 	@RequestMapping(value = "/deliver", method = RequestMethod.GET)
@@ -41,6 +46,22 @@ public class DeliverController {
 		
 		return "/deliver/deliveegg";  //login.jsp
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deliver/deliveegg/{sid}", method = RequestMethod.POST)
+	public ResponseEntity<String> deliveeggregist(@RequestBody SellVO svo, Model model) {
+		System.out.println(svo.toString());
+		ResponseEntity<String> entity = null;
+		
+		try {
+			ss.updateSellInfoForDeliver(svo);
+			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
 	
 	// 자동 로그인 + 배송하기 페이지
 	@RequestMapping(value = "/deliver/autologin/{uuid}", method = RequestMethod.GET)

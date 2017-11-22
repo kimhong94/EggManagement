@@ -35,4 +35,9 @@ public class SellDAOImpl implements SellDAO {
 		return session.selectOne(namespace+".getSellInfoBySID", sid);
 	}
 
+	@Override
+	public void updateSellInfoForDeliver(SellVO svo) throws Exception {
+		session.update(namespace+".updateSellInfoForDeliver", svo);
+	}
+
 }
